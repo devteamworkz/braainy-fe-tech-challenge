@@ -94,6 +94,9 @@ export class MainComponent implements OnInit {
 
         this.store.dispatch(loadContacts({ page, pageSize, sortProperty, sortDirection }));
         this.store.dispatch(loadProducts({ page, pageSize, sortProperty, sortDirection }));
+
+        this.contactsCount = this.contactsService.getContactsCount();
+        this.productsCount = this.productsService.getProductsCount();
       })
     );
   }
