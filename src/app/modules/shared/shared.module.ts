@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule];
 
@@ -20,7 +21,13 @@ const GUARDS = [];
 
 const PROVIDERS = [];
 
-const INTERCEPTORS = [];
+const INTERCEPTORS = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true,
+  },
+];
 
 @NgModule({
   imports: [...MODULES, ...MODULES_WITH_PROVIDERS],
