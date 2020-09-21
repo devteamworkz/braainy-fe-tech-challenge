@@ -1,0 +1,18 @@
+<form [formGroup]="editContactForm">
+  <mat-form-field class="w-100">
+    <mat-label>Name</mat-label>
+    <input type="text" autocomplete="off" matInput placeholder="Name" formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-label>Type</mat-label>
+    <mat-select formControlName="type">
+      <mat-option [value]="'company'">Company</mat-option>
+      <mat-option [value]="'person'">Person</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button type="button" [disabled]="!editContactForm.valid" mat-raised-button color="primary" class="w-100" (click)="onUpdateContact()">
+    {{ data.contact ? 'Update' : 'Add' }} Contact
+  </button>
+</form>
