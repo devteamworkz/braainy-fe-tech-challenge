@@ -3,9 +3,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { MaterialModule } from '../material/material.module';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
-const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule];
+const MODULES = [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, HttpClientModule];
 
 const MODULES_WITH_PROVIDERS = [ToastrModule.forRoot()];
 
