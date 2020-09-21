@@ -1,0 +1,15 @@
+<form [formGroup]="editProductForm">
+  <mat-form-field class="w-100">
+    <mat-label>Name</mat-label>
+    <input type="text" autocomplete="off" matInput placeholder="Name" formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-label>Description</mat-label>
+    <input type="text" autocomplete="off" matInput placeholder="Description" formControlName="description" />
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!editProductForm.valid" mat-raised-button color="primary" class="w-100" (click)="onUpdateProduct()">
+    {{ data ? 'Update' : 'Add' }} Product
+  </button>
+</form>
