@@ -4,6 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './components/main/main.component';
 import { MainRoutingModule } from './main-routing.module';
+import { SearchPipe } from './pipes/search.pipe';
 import { ContactEffects } from './store/effects/contact.effects';
 import { ContactsEffects } from './store/effects/contacts.effects';
 import { ProductEffects } from './store/effects/product.effects';
@@ -14,7 +15,7 @@ import { productReducers } from './store/reducers/product.reducers';
 import { productsReducers } from './store/reducers/products.reducers';
 
 @NgModule({
-  declarations: [MainComponent],
+  declarations: [MainComponent, SearchPipe],
   imports: [
     SharedModule,
     MainRoutingModule,
