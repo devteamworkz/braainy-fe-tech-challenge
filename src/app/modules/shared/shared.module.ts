@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule];
 
-const MODULES_WITH_PROVIDERS = [];
+const MODULES_WITH_PROVIDERS = [ToastrModule.forRoot()];
 
 const COMPONENTS = [];
 
