@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
@@ -8,7 +9,7 @@ import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule.forRoot(), StoreModule.forRoot({}), EffectsModule.forRoot()],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, SharedModule.forRoot(), StoreModule.forRoot({}), EffectsModule.forRoot()],
   providers: [],
   bootstrap: [AppComponent],
 })
