@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Product } from '../../models/product.model';
 import { loadProducts, productsLoadedSuccess, productUpdatedSuccess } from '../actions/products.actions';
 
-let initialState: Product[] = [];
+let initialState: Product[];
 
 const _productsReducers = createReducer(
   initialState,

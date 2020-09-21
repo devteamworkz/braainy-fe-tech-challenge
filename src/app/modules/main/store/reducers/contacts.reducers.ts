@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Contact } from '../../models/contact.model';
 import { contactsLoadedSuccess, contactUpdatedSuccess, loadContacts } from '../actions/contacts.actions';
 
-let initialState: Contact[] = [];
+let initialState: Contact[];
 
 const _contactsReducers = createReducer(
   initialState,
