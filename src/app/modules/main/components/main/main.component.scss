@@ -1,0 +1,9 @@
+mat-form-field {
+  width: 100%;
+}
+
+mat-tab-group {
+  ::ng-deep .mat-tab-body-wrapper {
+    height: 100%;
+  }
+}

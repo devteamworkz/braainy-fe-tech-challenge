@@ -1,1 +1,124 @@
-<p>app-main works!</p>
+<ng-template #loading>
+  <div class="h-100 d-flex align-items-center justify-content-center">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #paginator let-length="length">
+  <mat-paginator [length]="length" [pageIndex]="page - 1" [pageSize]="pageSize" [pageSizeOptions]="[10, 25, 100]" (page)="onPageChange($event)"></mat-paginator>
+</ng-template>
+
+<div class="container-fluid vh-100 d-flex flex-column">
+  <ng-container *ngIf="organization | async as organization; else loading">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-8">
+        <mat-form-field>
+          <mat-label>Search</mat-label>
+          <input type="text" autocomplete="off" matInput placeholder="Search" [(ngModel)]="searchValue" />
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4">
+        <mat-form-field>
+          <mat-label>Sort By</mat-label>
+          <mat-select [(ngModel)]="sortProperty" (ngModelChange)="onSort()">
+            <mat-option [value]="'name-ASC'">Name (A - Z)</mat-option>
+            <mat-option [value]="'name-DESC'">Name (Z - A)</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-sm-6 mb-2">
+        <button type="button" mat-raised-button color="primary" class="w-100" (click)="onAddContact(organization)">Add Contact</button>
+      </div>
+      <div class="col-12 col-sm-6 mb-2">
+        <button type="button" mat-raised-button color="primary" class="w-100" (click)="onAddProduct()">Add Product</button>
+      </div>
+    </div>
+
+    <mat-tab-group class="flex-grow-1 flex-shrink-1 overflow-auto" (selectedIndexChange)="onSelectedIndexChange($event)">
+      <mat-tab label="Contacts">
+        <ng-container *ngIf="contacts | async as contacts; else loading">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="p-2 col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let contact of contacts | search: 'name':searchValue">
+                <mat-card class="example-card">
+                  <mat-card-header>
+                    <mat-card-title *ngIf="contactSettings.name">{{ contact['name'] }}</mat-card-title>
+                    <mat-card-subtitle *ngIf="contactSettings.type">{{ contact['type'] }}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-actions [align]="'end'">
+                    <button type="button" mat-button color="warn" (click)="onDeleteContact(contact)">DELETE</button>
+                    <button type="button" mat-button (click)="onEditContact(contact)">EDIT</button>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </mat-tab>
+
+      <mat-tab label="Products">
+        <ng-container *ngIf="products | async as products; else loading">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="p-2 col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products | search: 'name':searchValue">
+                <mat-card class="example-card">
+                  <mat-card-header>
+                    <mat-card-title *ngIf="productSettings.name">{{ product['name'] }}</mat-card-title>
+                    <mat-card-subtitle *ngIf="productSettings.description">{{ product['description'] }}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-actions [align]="'end'">
+                    <button type="button" mat-button color="warn" (click)="onDeleteProduct(product)">DELETE</button>
+                    <button type="button" mat-button (click)="onEditProduct(product)">EDIT</button>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </mat-tab>
+
+      <mat-tab label="Settings">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="p-2 col-12 col-sm-6">
+              <section>
+                <h5>Contact Settings</h5>
+
+                <mat-checkbox [(ngModel)]="contactSettings.type" class="d-block" color="primary" (ngModelChange)="onContactSettingsChanged()">
+                  Type
+                </mat-checkbox>
+                <mat-checkbox [(ngModel)]="contactSettings.name" class="d-block" color="primary" (ngModelChange)="onContactSettingsChanged()">
+                  Name
+                </mat-checkbox>
+              </section>
+            </div>
+            <div class="p-2 col-12 col-sm-6">
+              <section>
+                <h5>Product Settings</h5>
+
+                <mat-checkbox [(ngModel)]="productSettings.name" class="d-block" color="primary" (ngModelChange)="onProductSettingsChanged()">
+                  Name
+                </mat-checkbox>
+                <mat-checkbox [(ngModel)]="productSettings.description" class="d-block" color="primary" (ngModelChange)="onProductSettingsChanged()">
+                  Description
+                </mat-checkbox>
+              </section>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    <ng-container *ngIf="selectedTabIndex">
+      <ng-template [ngTemplateOutlet]="paginator" [ngTemplateOutletContext]="{ length: productsCount | async }"></ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="!selectedTabIndex">
+      <ng-template [ngTemplateOutlet]="paginator" [ngTemplateOutletContext]="{ length: contactsCount | async }"></ng-template>
+    </ng-container>
+  </ng-container>
+</div>
