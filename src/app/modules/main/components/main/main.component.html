@@ -71,7 +71,7 @@
                     <mat-card-subtitle *ngIf="productSettings.description">{{ product['description'] }}</mat-card-subtitle>
                   </mat-card-header>
                   <mat-card-actions [align]="'end'">
-                    <button type="button" mat-button color="warn" (click)="onDeleteProduct(product)">DELETE</button>
+                    <button type="button" mat-button color="warn" appConfirm (confirm)="onDeleteProduct(product)">DELETE</button>
                     <button type="button" mat-button (click)="onEditProduct(product)">EDIT</button>
                   </mat-card-actions>
                 </mat-card>
