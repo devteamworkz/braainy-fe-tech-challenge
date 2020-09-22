@@ -50,7 +50,7 @@
                     <mat-card-subtitle *ngIf="contactSettings.type">{{ contact['type'] }}</mat-card-subtitle>
                   </mat-card-header>
                   <mat-card-actions [align]="'end'">
-                    <button type="button" mat-button color="warn" (click)="onDeleteContact(contact)">DELETE</button>
+                    <button type="button" mat-button color="warn" appConfirm (confirm)="onDeleteContact(contact)">DELETE</button>
                     <button type="button" mat-button (click)="onEditContact(contact)">EDIT</button>
                   </mat-card-actions>
                 </mat-card>

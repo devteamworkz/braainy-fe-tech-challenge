@@ -15,9 +15,11 @@ import { contactReducers } from './store/reducers/contact.reducers';
 import { contactsReducers } from './store/reducers/contacts.reducers';
 import { productReducers } from './store/reducers/product.reducers';
 import { productsReducers } from './store/reducers/products.reducers';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { ConfirmDirective } from './directives/confirm.directive';
 
 @NgModule({
-  declarations: [MainComponent, SearchPipe, EditContactComponent, EditProductComponent],
+  declarations: [MainComponent, SearchPipe, EditContactComponent, EditProductComponent, ConfirmComponent, ConfirmDirective],
   imports: [
     SharedModule,
     MainRoutingModule,
