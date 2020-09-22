@@ -12,7 +12,7 @@
     </mat-select>
   </mat-form-field>
 
-  <button type="button" [disabled]="!editContactForm.valid" mat-raised-button color="primary" class="w-100" (click)="onUpdateContact()">
+  <button type="submit" [disabled]="!editContactForm.valid" mat-raised-button color="primary" class="w-100" (click)="onUpdateContact()">
     {{ data.contact ? 'Update' : 'Add' }} Contact
   </button>
 </form>
